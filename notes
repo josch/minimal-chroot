@@ -1,0 +1,4 @@
+sudo dd if=/dev/zero of=/dev/sdc bs=1M count=1 && echo -ne "c\nu\no\nn\np\n1\n\n\np\nw\n" | sudo fdisk /dev/sdc
+sudo mkfs.ext3 /dev/sdc1 && sudo mount /dev/sdc1 /mnt && sudo tar -C /mnt -xf debian-sid-armel-2011-06-25.tar && sudo umount /mnt
+
+SUITE=sid ARCH=armel QEMU_LD_PREFIX=`pwd`/debian-$SUITE-$ARCH-`date +%F` ./polystrap.sh -a $ARCH -s $SUITE -m http://127.0.0.1:3142/cdn.debian.net/debian om-gta02/
